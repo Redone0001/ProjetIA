@@ -1,32 +1,28 @@
-class fusee{
+#pragma once
+#include "brain.h"
+#include "module.h"
+#include "save.h"
+#include "ordinateurDeBord.h"
+#include <vector>
 
+class fusee{
+public:
 brain Brain;
 
 int gen;
 int throttleGeneral = 3;
-bool Vivant;
+bool vivant;
 float fit;
 
-vector <module> lanceurVec;
-module soyuz(6999,1,0,2.86,0,0);
-module etage1(6500,105000,1000000,3.42,350,0);
-module etage2(2250,25200,300000,2.78,105,0);
-lanceurVec.push_back(soyuz);
-lanceurVec.push_back(etage2);
-lanceurVec.push_back(etage1);
-for (int i=0;i<4; i++){
-	module booster(3500,40000,1000000,2.82,333.33,0);
-	lanceurVec.push_back(booster);
-}
+std::vector <module> lanceurVec;
+
 ordinateurDeBord ENIAC;
 
 
-
-nextStep(long double t);
-
-
-
-
+fusee(int);
+void nextStep(long double t);
+void calculFitness();
+fusee gimmeBaby();
 
 
 
