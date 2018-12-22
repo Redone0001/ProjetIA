@@ -7,7 +7,7 @@ brain::brain(int size):
 {
 
 	for (int i=0;i<size;i++){
-		Angle.push_back(uni1(g1));
+		Angle.push_back(uni2(g1));
 		Throttle.push_back(uni1(g1));
 	}
 	
