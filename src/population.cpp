@@ -3,12 +3,12 @@
 using namespace std;
 
 
-Population::Population(int size):taille(size),BestFusee(0){
+Population::Population(int size):taille(size),BestFusee(0),Generation(0){
 		
 	for(int i=0;i<taille;i++){
 		Fusee.push_back(fusee(0));
 	}
-	initialisationCSV("save"+to_string(Fusee.at(0).gen)+".csv");
+	initialisationCSV("save"+to_string(Generation)+".csv");
 }
 
 
@@ -16,7 +16,8 @@ void Population::NextStep(long double t){
 	for (int i = 0;i<taille;i++){
 		Fusee.at(i).nextStep(t);
 	}
-	saveToCSV("save"+to_string(Fusee.at(0).gen)+".csv",Fusee.at(0).ENIAC,t);
+	saveToCSV("save"+to_string(Generation)+".csv",Fusee.at(0).ENIAC,t);
+	
 }
 void Population::CalculFit(){
 	SumFit=0;
@@ -31,6 +32,7 @@ bool Population::allDead(){
 		if (Fusee.at(i).vivant)
 			return false;
 	}
+	cout <<"tous mort"<<endl;
 	return true;
 }
 
@@ -61,12 +63,14 @@ void Population::darwinPlay(){
 		NewGen.at(i)= maman.gimmeBaby();
 	}
 	Fusee= NewGen;
+	Generation++;
 }
 
 void Population::mutation(){
 
 	for (int i = 1; i< taille;i++){
 		Fusee.at(i).Brain.mutation();
+		Fusee.at(i).vivant=true;
 
 	}
 
@@ -82,6 +86,7 @@ int Population::FindBestOne(){
 		if (Fusee.at(i).fit>max){
 			max = Fusee.at(i).fit;
 			maxIndex = i;
+			cout <<maxIndex<<endl;
 		}
 	}
 	return maxIndex;

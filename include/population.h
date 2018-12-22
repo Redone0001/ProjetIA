@@ -12,6 +12,7 @@ public:
 	std::vector<fusee> Fusee;
 	long double SumFit;
 	int BestFusee;
+	int Generation;
 
 	Population(int);
 	void darwinPlay();

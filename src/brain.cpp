@@ -53,7 +53,7 @@ brain& brain::operator=(const brain& b)
 
 void brain::mutation(){
 	
-	float ratioMutation = 0.05;
+	float ratioMutation = 0.01;
 	for (long unsigned int i=0; i<Angle.size();i++){	
 		long double rand = uni1(g1);
 		if (rand < ratioMutation){

@@ -14,6 +14,7 @@ ordinateurDeBord::ordinateurDeBord (){
 	acceleration.second=0;
 	gravite.first=0;
 	gravite.second=0;
+
 }
 
 bool ordinateurDeBord::checkCarburant(module x){
@@ -49,14 +50,20 @@ void ordinateurDeBord::calculGravite(vector <module> lanceurVec){
 	gravite.first = -39.857128E13*masseTot*position.first/pow(vecR,3);
 	gravite.second = -39.857128E13*masseTot*position.second/pow(vecR,3);
 	//cout <<gravite.first<<","<<gravite.second<<","<<masseTot<<","<<position.first<<","<<position.second<<endl;
+//	if (gravite.first != gravite.first)
+//		cout << "gf" << endl;
+//	if (gravite.second != gravite.second)
+//		cout << "gs"  << endl;
 }
 
 long double ordinateurDeBord::densite(){
 	long double altitude = sqrt(pow(position.first,2)+pow(position.second,2))-3371000.0;
 	long double pres =0;
-	if (altitude<350000){
-		
-		pres = 101325*pow(1-(0.0065*altitude/288.15),(sqrt(pow(gravite.first,2)*pow(gravite.second,2)))*0.0289644/(8.31447*0.0065));
+	if (-0.0065*altitude+288.15 > 0){
+		pres = 101325*pow(288.15/(-0.0065*altitude+288.15),1+(9.80665*0.0034836177811575927)/-0.0065);
+	if (pres != pres)
+		cout << "alt = " << altitude << endl << "test =" << (sqrt(pow(gravite.first,2)*pow(gravite.second,2)))*0.0289644/(8.31447*0.0065)<< endl;
+	
 	}
 	else{
 		pres = 0;
@@ -71,7 +78,9 @@ long double ordinateurDeBord::sumFrottement(vector <module> lanceurVec){
 	}
 	long double forceFrot=0;
 	forceFrot = pow(vitesse.first,2)*pow(vitesse.second,2)*densite()*surfaceTot;
-		
+	if (forceFrot != forceFrot){
+		//cout << "densite = " << densite() << endl << "surf = " << surfaceTot << endl << "V1 = " << vitesse.first << endl << "V2 = " << vitesse.second << endl;
+	}
 	return forceFrot;
 	
 }
@@ -86,7 +95,16 @@ void ordinateurDeBord::sumForce(vector <module> lanceurVec){
 	//cout<<angle<<endl;		// il est nécéssaire de bien gérer l'angle de la fusée
 	SommeForces.first = gravite.first+power * cos(angle)-frot *cos(angle)*0;
 	SommeForces.second = gravite.second+power * sin(angle)-frot * sin(angle)*0;
-	
+//	if (SommeForces.first != SommeForces.first){
+//		cout << "Sf" << endl;
+//		cout << "G1 =" << gravite.first << endl << "P = " << power << endl << "cos = " << cos(angle) << endl << "frot =" << frot << endl;
+//	}
+	if (SommeForces.second != SommeForces.second){
+		cout << "Ss" << endl;
+		cout << "G2 =" << gravite.second << endl << "sin =" << sin(angle) << endl;
+	}
+//	if (power != power)
+//		cout << "P" << endl;
 }
 long double ordinateurDeBord::checkMasse(vector <module> lanceurVec){
 	long double masseTot=0;
@@ -106,17 +124,21 @@ void ordinateurDeBord::updateMouv(long double t,long double masse){
 	position.first += vitesse.first*t;
 	position.second+=vitesse.second*t;
 	//cout <<"SF: "<<SommeForces.first<<","<<SommeForces.second<<endl;
-	
+	//cout << "a = "<<acceleration.first << endl;
+//	if (position.first != position.first){
+//		cout << "Pf"  << endl;
+//	}
+//	if (position.second != position.second)
+//		cout << "Ps"  << endl;
 		
 }
-void ordinateurDeBord::updateAngle(long double Angle){
+void ordinateurDeBord::updateAngle(long double temps){
 	
 	//angle = (1/(1+exp(-0.05*(temps-120))*1.570796)+1.570796);	
-	/*if (temps <2*60){
+	if (temps <2*60){
 		angle = 3.141592/2;
 	}
 	else {
 		angle = 0;
-	}*/
-	angle=Angle;	
+	}	
 }
