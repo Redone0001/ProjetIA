@@ -81,7 +81,7 @@ int main(){
 	//Proton.Brain.Throttle.at(26)=0;
 	int last = Proton.Brain.Throttle.size()-1;
 	Proton.Brain.Throttle.at(last)=0;
-	// création de la variable t (le temps), attend une variable de contrôle pour l'enregistrement des données de vol
+	// création de la variable t (le temps), wait une variable de contrôle pour l'enregistrement des données de vol
 	double long t=0;
 	int wait = 0;
 	initialisationCSV("save.csv"); 
