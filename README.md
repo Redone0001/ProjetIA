@@ -1,4 +1,4 @@
-Introduction
+﻿Introduction
 Le but de ce projet sera de simuler la première partie d'un vol spatial aller-retour. Nous nous baserons sur la structure d'une fusée Soyuz. Une telle fusée est composée de 3 étages:
 
 Un premier étage composé de 4 boosters, qui vont s'allumer au décollage et brûleront pendant ~2 minutes avant d'être détachés.
@@ -23,4 +23,4 @@ Instructions du projet
 En considérant qu'on atteint l'apogée de notre trajectoire lorsque r˙=0\dot{r} = 0r˙=0 (attention, ça ne veut pas dire que v⃗=0⃗\vec{v} = \vec{0}v=0) et que seuls les deux premiers étages sont nécessaires pour ceci, déterminez la quantité de carburant nécessaire en fonction de l'apogée et de la masse du 3e étage + capsule.
 Pour être en orbite circulaire, il faut une vitesse de vR=GMrv_R = \sqrt{\frac{GM}{r}}vR​=rGM​​, déterminez la quantité de carburant nécessaire au 3e étage pour y parvenir.
 Pour chaque étape, enregistrez les informations nécessaire sur disque à l'aide du format de données de votre choix.
-# ProjetIA ch
+# ProjetIA
