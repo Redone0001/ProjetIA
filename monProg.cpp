@@ -1,4 +1,4 @@
-#include "include/ordinateurDeBord.h"
+﻿#include "include/ordinateurDeBord.h"
 #include "include/module.h"
 #include "include/brain.h"
 #include "include/fusee.h"
@@ -12,8 +12,8 @@ using namespace std;
 int main(){
 	/*
 	
-	Ancienne partie du code servant à faire évoluer une population de fusée, le code n'est pas assez optimiser pour être facilement utiliser.
-	La quantité de ressource nécéssaire à la faire tourner lors de la copie et créeation de fusée peut mettre à mal les CPU
+	Ancienne partie du code servant à faire évoluer une population de fusée, le code n'est pas assez optimisé pour être facilement utilisé.
+	La quantité de ressources nécéssaires à la faire tourner lors de la copie et création de fusée peut mettre à mal les CPU
 	
 	
 	Population Batch(10);
@@ -60,7 +60,7 @@ int main(){
 			cout << Batch.Generation<<","<<Batch.Fusee.at(0).fit<<endl;
 		}*/
 
-	fusee Proton(0,400); // on crée une fusée de génération 0 avec 400 instruction de vol différentes;
+	fusee Proton(0,400); // on crée une fusée de génération 0 avec 400 instructions de vol différentes;
 	// ici on assigne les différentes instructions qui permettent d'envoyer la fusée en orbite
 	for (long unsigned int i = 0;i<Proton.Brain.Angle.size();i++){
 		Proton.Brain.Angle.at(i)=3.141592/2;
@@ -81,15 +81,15 @@ int main(){
 	//Proton.Brain.Throttle.at(26)=0;
 	int last = Proton.Brain.Throttle.size()-1;
 	Proton.Brain.Throttle.at(last)=0;
-	// créeation de varialbe t est le temps, wait une variable de controle pour l'enregistrement des données de vol
+	// création de la variable t (le temps), attend une variable de contrôle pour l'enregistrement des données de vol
 	double long t=0;
 	int wait = 0;
 	initialisationCSV("save.csv"); 
 	
 	while (Proton.vivant && t < 35000){
 		Proton.nextStep(t); // on fait évoluer la fusée
-		if (wait>99){ // méthode à amélioré on devrait sauver en local et puis dumb dans le fichier
-			saveToCSV("save.csv", Proton.ENIAC,t);	// on sauvergarde  tout les 100 passage dans un fichier CSV 		
+		if (wait>99){ // méthode à améliorer on devrait sauver en local et puis dumb dans le fichier
+			saveToCSV("save.csv", Proton.ENIAC,t);	// on sauvegarde  tous les 100 passages dans un fichier CSV 		
 			
 			wait = 0;
 		}
