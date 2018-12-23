@@ -72,28 +72,14 @@ long double ordinateurDeBord::sumFrottement(vector <module> lanceurVec){ // fait
 	
 }
 
-void ordinateurDeBord::sumForce(vector <module> lanceurVec){
-//cout <<"calcul des forces"<<endl;	
+void ordinateurDeBord::sumForce(vector <module> lanceurVec){ // calcul de la somme des forces
 	calculGravite(lanceurVec);
-//cout <<"gravite done"<<endl;
-	long double power = sumPuissance(lanceurVec); 		// ATTENTION ceci ne fonctionne que si on décolle "vers le haut" si on part de l'autre côté de la terre on va avoir des soucis
-//cout <<"puissance done"<<endl;
+	long double power = sumPuissance(lanceurVec); 
 	long double frot = sumFrottement(lanceurVec);	
-	//cout<<angle<<endl;		// il est nécéssaire de bien gérer l'angle de la fusée
-	SommeForces.first = gravite.first+power * cos(angle)-frot *cos(angle)*0;
+	SommeForces.first = gravite.first+power * cos(angle)-frot *cos(angle)*0; // l'angle est un angle dans le repère de la terre
 	SommeForces.second = gravite.second+power * sin(angle)-frot * sin(angle)*0;
-//	if (SommeForces.first != SommeForces.first){
-//		cout << "Sf" << endl;
-//		cout << "G1 =" << gravite.first << endl << "P = " << power << endl << "cos = " << cos(angle) << endl << "frot =" << frot << endl;
-//	}
-	if (SommeForces.second != SommeForces.second){
-		cout << "Ss" << endl;
-		cout << "G2 =" << gravite.second << endl << "sin =" << sin(angle) << endl;
-	}
-//	if (power != power)
-//		cout << "P" << endl;
 }
-long double ordinateurDeBord::checkMasse(vector <module> lanceurVec){
+long double ordinateurDeBord::checkMasse(vector <module> lanceurVec){// retourne la masse totale carburant compris
 	long double masseTot=0;
 	for (auto x:lanceurVec){
 	masseTot+=x.masse;
@@ -102,26 +88,15 @@ long double ordinateurDeBord::checkMasse(vector <module> lanceurVec){
 	return masseTot;
 }
 
-void ordinateurDeBord::updateMouv(long double t,long double masse){
-	//cout <<"vit :"<<vitesse.first<<","<<vitesse.second<<"#"<<t<<endl;
+void ordinateurDeBord::updateMouv(long double t,long double masse){ //bouge la fusée
 	acceleration.first=SommeForces.first/masse;
 	acceleration.second=SommeForces.second/masse;
 	vitesse.first += acceleration.first*t;
 	vitesse.second += acceleration.second*t;
 	position.first += vitesse.first*t;
-	position.second+=vitesse.second*t;
-	//cout <<"SF: "<<SommeForces.first<<","<<SommeForces.second<<endl;
-	//cout << "a = "<<acceleration.first << endl;
-//	if (position.first != position.first){
-//		cout << "Pf"  << endl;
-//	}
-//	if (position.second != position.second)
-//		cout << "Ps"  << endl;
-		
+	position.second+=vitesse.second*t;	
 }
-void ordinateurDeBord::updateAngle(long double temps){
-	
-	//angle = (1/(1+exp(-0.05*(temps-120))*1.570796)+1.570796);	
+void ordinateurDeBord::updateAngle(long double temps){//ancienne fonction qui donnait l'angle en fonction du temps
 	if (temps <2*60){
 		angle = 3.141592/2;
 	}
