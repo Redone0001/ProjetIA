@@ -54,6 +54,7 @@ long double ordinateurDeBord::densite(){// calcul la densité de l'air là où e
 	long double pres =0;
 	if (-0.0065*altitude+288.15 > 0){
 		pres = 101325*pow(288.15/(-0.0065*altitude+288.15),1+(9.80665*0.0034836177811575927)/-0.0065);
+	}
 	else{
 		pres = 0;
 	}
