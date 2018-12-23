@@ -4,7 +4,7 @@
 #include <iostream>
 
 using namespace std;
-ordinateurDeBord::ordinateurDeBord (){
+ordinateurDeBord::ordinateurDeBord (){ // créeation de l'ordi de bord
 	angle = 3.141592;
 	position.first = 0;
 	position.second=6371000.0;
@@ -17,7 +17,7 @@ ordinateurDeBord::ordinateurDeBord (){
 
 }
 
-bool ordinateurDeBord::checkCarburant(module x){
+bool ordinateurDeBord::checkCarburant(module x){ // on vérifie que le carburant est en quantité suffusisante
 	if (x.carburant<40){
 		return(true);
 	}
@@ -27,18 +27,17 @@ bool ordinateurDeBord::checkCarburant(module x){
 }
 
 void ordinateurDeBord::updateCarburant(module & x){
-	x.carburant = x.carburant-(x.consomation*x.throttle*0.1);
-	//cout <<x.carburant<<endl;
+	x.carburant = x.carburant-(x.consomation*x.throttle*0.1);// met à jour le carburant
 }
 
-long double ordinateurDeBord::sumPuissance(vector <module> lanceurVec){
+long double ordinateurDeBord::sumPuissance(vector <module> lanceurVec){// fait la somme de la puissance dégagé par tout les moteurs allumés
 	long double sum=0;	
 	for (auto x:lanceurVec){
 		sum += (x.puissance*x.throttle);
 	}
 	return sum;
 }
-void ordinateurDeBord::calculGravite(vector <module> lanceurVec){
+void ordinateurDeBord::calculGravite(vector <module> lanceurVec){// calcul la gravité là où se trouve la fusée
 	long double masseTot=0;
 	for (auto x:lanceurVec){
 	masseTot+=x.masse;
@@ -48,38 +47,27 @@ void ordinateurDeBord::calculGravite(vector <module> lanceurVec){
 	long double vecR = sqrt(pow(position.first,2)+pow(position.second,2));
 	gravite.first = -39.857128E13*masseTot*position.first/pow(vecR,3);
 	gravite.second = -39.857128E13*masseTot*position.second/pow(vecR,3);
-	//cout <<gravite.first<<","<<gravite.second<<","<<masseTot<<","<<position.first<<","<<position.second<<endl;
-//	if (gravite.first != gravite.first)
-//		cout << "gf" << endl;
-//	if (gravite.second != gravite.second)
-//		cout << "gs"  << endl;
 }
 
-long double ordinateurDeBord::densite(){
+long double ordinateurDeBord::densite(){// calcul la densité de l'air là où est la fusée
 	long double altitude = sqrt(pow(position.first,2)+pow(position.second,2))-3371000.0;
 	long double pres =0;
 	if (-0.0065*altitude+288.15 > 0){
 		pres = 101325*pow(288.15/(-0.0065*altitude+288.15),1+(9.80665*0.0034836177811575927)/-0.0065);
-	if (pres != pres)
-		cout << "alt = " << altitude << endl << "test =" << (sqrt(pow(gravite.first,2)*pow(gravite.second,2)))*0.0289644/(8.31447*0.0065)<< endl;
-	
-	}
 	else{
 		pres = 0;
 	}
 	return pres;
 }
 
-long double ordinateurDeBord::sumFrottement(vector <module> lanceurVec){
+long double ordinateurDeBord::sumFrottement(vector <module> lanceurVec){ // fait la somme des frottements
 	long double surfaceTot=0;
 	for (auto x:lanceurVec){
 		surfaceTot+=x.surfaceFrot;
 	}
 	long double forceFrot=0;
 	forceFrot = pow(vitesse.first,2)*pow(vitesse.second,2)*densite()*surfaceTot;
-	if (forceFrot != forceFrot){
-		//cout << "densite = " << densite() << endl << "surf = " << surfaceTot << endl << "V1 = " << vitesse.first << endl << "V2 = " << vitesse.second << endl;
-	}
+	
 	return forceFrot;
 	
 }
