@@ -5,7 +5,7 @@
 
 class brain{
 public:
-	//suite d'instruction pour le vol
+	//suite d'instructions pour le vol
 	std::vector <long double> Angle;
 	std::vector <long double> Throttle;
 	
