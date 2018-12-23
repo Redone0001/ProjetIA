@@ -3,10 +3,10 @@
 using namespace std;
 
 
-Population::Population(int size):taille(size),BestFusee(0),Generation(0){
+Population::Population(int size, int BrainSize):taille(size),BestFusee(0),Generation(0){
 		
 	for(int i=0;i<taille;i++){
-		Fusee.push_back(fusee(0));
+		Fusee.push_back(fusee(0,BrainSize));
 	}
 	initialisationCSV("save"+to_string(Generation)+".csv");
 }
@@ -25,7 +25,7 @@ void Population::CalculFit(){
 		Fusee.at(i).calculFitness();
 		SumFit+=Fusee.at(i).fit;
 	}
-	cout <<SumFit<<endl;
+	//cout <<SumFit<<endl;
 }
 bool Population::allDead(){
 	for (int i =0;i<taille;i++){
@@ -86,7 +86,7 @@ int Population::FindBestOne(){
 		if (Fusee.at(i).fit>max){
 			max = Fusee.at(i).fit;
 			maxIndex = i;
-			cout <<maxIndex<<endl;
+			//cout <<maxIndex<<endl;
 		}
 	}
 	return maxIndex;

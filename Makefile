@@ -5,7 +5,7 @@ OBJ     = $(INCLUDE:.cpp=.o)
 
 
 CC  = g++
-CFL = -Wall -O3 -std=c++11
+CFL = -g -Wall -O3 -std=c++11
 
 all: $(OBJ) $(PROG)
 	@echo "All done!"

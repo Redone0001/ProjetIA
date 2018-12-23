@@ -19,7 +19,7 @@ std::vector <module> lanceurVec;
 ordinateurDeBord ENIAC;
 
 
-fusee(int);
+fusee(int,int);
 void nextStep(long double t);
 void calculFitness();
 fusee gimmeBaby();

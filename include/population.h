@@ -14,7 +14,7 @@ public:
 	int BestFusee;
 	int Generation;
 
-	Population(int);
+	Population(int,int);
 	void darwinPlay();
 	bool allDead();
 	void CalculFit();

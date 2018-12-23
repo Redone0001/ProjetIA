@@ -19,7 +19,6 @@ ordinateurDeBord::ordinateurDeBord (){
 
 bool ordinateurDeBord::checkCarburant(module x){
 	if (x.carburant<40){
-		x.~module();
 		return(true);
 	}
 	else {
