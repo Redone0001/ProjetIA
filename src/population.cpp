@@ -3,9 +3,9 @@
 using namespace std;
 /*
 
-Ceci est le coeur de l'IA que j'ai voulu implémenter mais elle ne doit pas encore être utiliser 
+Ceci est le coeur de l'IA que j'ai voulu implémenté mais elle ne doit pas encore être utilisée
 
-le projet sera encore mis à jour dans le futur et ces commentaire seront modifié
+le projet sera encore mis à jour dans le futur et ces commentaires seront modifiés
 
 */
 Population::Population(int size, int BrainSize):taille(size),BestFusee(0),Generation(0){
