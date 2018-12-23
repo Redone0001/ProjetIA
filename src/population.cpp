@@ -1,8 +1,13 @@
 #include "../include/population.h"
 #include <random>
 using namespace std;
+/*
 
+Ceci est le coeur de l'IA que j'ai voulu implémenter mais elle ne doit pas encore être utiliser 
 
+le projet sera encore mis à jour dans le futur et ces commentaire seront modifié
+
+*/
 Population::Population(int size, int BrainSize):taille(size),BestFusee(0),Generation(0){
 		
 	for(int i=0;i<taille;i++){
@@ -25,7 +30,6 @@ void Population::CalculFit(){
 		Fusee.at(i).calculFitness();
 		SumFit+=Fusee.at(i).fit;
 	}
-	//cout <<SumFit<<endl;
 }
 bool Population::allDead(){
 	for (int i =0;i<taille;i++){
@@ -86,7 +90,6 @@ int Population::FindBestOne(){
 		if (Fusee.at(i).fit>max){
 			max = Fusee.at(i).fit;
 			maxIndex = i;
-			//cout <<maxIndex<<endl;
 		}
 	}
 	return maxIndex;
