@@ -76,12 +76,20 @@ int main(){
 	int last = Proton.Brain.Throttle.size()-1;
 	Proton.Brain.Throttle.at(last)=0;
 	double long t=0;
+	int wait = 0;
 	initialisationCSV("save.csv");
-	while (Proton.vivant){
+	while (Proton.vivant && t < 35000){
 		//cout<<"test"<<endl;
 		Proton.nextStep(t);
 		//cout<<"test3"<<endl;
-		saveToCSV("save.csv", Proton.ENIAC,t);
+		if (wait>99){
+			saveToCSV("save.csv", Proton.ENIAC,t);			
+			
+			wait = 0;
+		}
+		else
+			wait++;
+			
 		t+=0.1;
 	}
 	//cout <<Proton.lanceurVec.at(2).carburant<<endl;
