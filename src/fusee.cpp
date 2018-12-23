@@ -12,13 +12,13 @@ fusee::fusee(int Gen, int BrainSize):Brain(BrainSize), gen(Gen) {
 	
 	//initialisationCSV("gen_"+to_string(gen));
 	module soyuz(6930,70,0,2.86,0,0);
-	module etage1(6500,105000,1000000,3.42,350,0);
-	module etage2(2250,25200,300000,2.78,105,0);
+	module etage1(6500,205000,1200000,3.42,350,0);
+	module etage2(2250,252000,400000,2.78,105,0);
 	lanceurVec.push_back(soyuz);
 	lanceurVec.push_back(etage2);
 	lanceurVec.push_back(etage1);
 	for (int i=0;i<4; i++){
-		module booster(3500,40000,1000000,2.82,333.33,0);
+		module booster(3500,44000,1200000,2.82,333.33,0);
 		lanceurVec.push_back(booster);
 	}
 	for(int i = 3;i<7;i++){

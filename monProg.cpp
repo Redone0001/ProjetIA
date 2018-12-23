@@ -27,8 +27,8 @@ int main(){
 		}
 	}
 	long double t = 0;
-	while(Batch.Fusee.at(0).fit < 200){
-		while (t<1*60){
+	
+		while (t<1000){
 			if (Batch.allDead()){
 				Batch.CalculFit();
 				Batch.darwinPlay();
@@ -43,23 +43,36 @@ int main(){
 				Batch.NextStep(t);
 			}
 		
-		t+=0.1;
-		}
-		cout << Batch.Generation<<","<<Batch.Fusee.at(0).fit<<endl;
-		if (Batch.Fusee.at(0).fit < 200){
-			for (int i=0; i<Batch.taille;i++){
-				Batch.Fusee.at(i).vivant=false;
-				t=0;
-			}
-		}	
-		cout << Batch.Generation<<","<<Batch.Fusee.at(0).fit<<endl;
-	}*/
+			t+=0.1;
+		
+			cout << Batch.Generation<<","<<Batch.Fusee.at(0).fit<<endl;
+			if (Batch.Fusee.at(0).fit < 200){
+				for (int i=0; i<Batch.taille;i++){
+					Batch.Fusee.at(i).vivant=false;
+					t=0;
+				}
+			}	
+			cout << Batch.Generation<<","<<Batch.Fusee.at(0).fit<<endl;
+		}*/
 
-	fusee Proton(0,15);
+	fusee Proton(0,400);
 	for (long unsigned int i = 0;i<Proton.Brain.Angle.size();i++){
 		Proton.Brain.Angle.at(i)=3.141592/2;
-		Proton.Brain.Throttle.at(i)=1;
+		Proton.Brain.Throttle.at(i)=0;
 	}
+	for (long unsigned int i = 0;i<35;i++){
+		Proton.Brain.Angle.at(i)=3.141592/2;
+		Proton.Brain.Throttle.at(i)=4;
+	}
+	for (long unsigned int i = 35;i<40;i++){
+		Proton.Brain.Angle.at(i)=0.5;
+		Proton.Brain.Throttle.at(i)=3.5;
+	}
+	for (long unsigned int i = 40;i<80;i++){
+		Proton.Brain.Angle.at(i)=-0;
+		Proton.Brain.Throttle.at(i)=4;
+	}
+	//Proton.Brain.Throttle.at(26)=0;
 	int last = Proton.Brain.Throttle.size()-1;
 	Proton.Brain.Throttle.at(last)=0;
 	double long t=0;
