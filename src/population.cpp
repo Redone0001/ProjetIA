@@ -1,9 +1,9 @@
-#include "../include/population.h"
+﻿#include "../include/population.h"
 #include <random>
 using namespace std;
 /*
 
-Ceci est le coeur de l'IA que j'ai voulu implémenté mais elle ne doit pas encore être utilisée
+Ceci est le coeur de l'IA que j'ai voulu implémenter mais elle ne doit pas encore être utilisée, 
 
 le projet sera encore mis à jour dans le futur et ces commentaires seront modifiés
 
@@ -36,7 +36,7 @@ bool Population::allDead(){
 		if (Fusee.at(i).vivant)
 			return false;
 	}
-	cout <<"tous mort"<<endl;
+	cout <<"tous morts"<<endl;
 	return true;
 }
 

@@ -1,10 +1,10 @@
-#include "../include/ordinateurDeBord.h"
+﻿#include "../include/ordinateurDeBord.h"
 #include "../include/module.h"
 #include <math.h>
 #include <iostream>
 
 using namespace std;
-ordinateurDeBord::ordinateurDeBord (){ // créeation de l'ordi de bord
+ordinateurDeBord::ordinateurDeBord (){ // création de l'ordi de bord
 	angle = 3.141592;
 	position.first = 0;
 	position.second=6371000.0;
@@ -17,7 +17,7 @@ ordinateurDeBord::ordinateurDeBord (){ // créeation de l'ordi de bord
 
 }
 
-bool ordinateurDeBord::checkCarburant(module x){ // on vérifie que le carburant est en quantité suffusisante
+bool ordinateurDeBord::checkCarburant(module x){ // on vérifie que le carburant est en quantité suffisante
 	if (x.carburant<40){
 		return(true);
 	}
@@ -30,14 +30,14 @@ void ordinateurDeBord::updateCarburant(module & x){
 	x.carburant = x.carburant-(x.consomation*x.throttle*0.1);// met à jour le carburant
 }
 
-long double ordinateurDeBord::sumPuissance(vector <module> lanceurVec){// fait la somme de la puissance dégagé par tout les moteurs allumés
+long double ordinateurDeBord::sumPuissance(vector <module> lanceurVec){// fait la somme de la puissance dégagée par tous les moteurs allumés
 	long double sum=0;	
 	for (auto x:lanceurVec){
 		sum += (x.puissance*x.throttle);
 	}
 	return sum;
 }
-void ordinateurDeBord::calculGravite(vector <module> lanceurVec){// calcul la gravité là où se trouve la fusée
+void ordinateurDeBord::calculGravite(vector <module> lanceurVec){// calcule la gravité à l'endroit où se trouve la fusée
 	long double masseTot=0;
 	for (auto x:lanceurVec){
 	masseTot+=x.masse;
@@ -49,7 +49,7 @@ void ordinateurDeBord::calculGravite(vector <module> lanceurVec){// calcul la gr
 	gravite.second = -39.857128E13*masseTot*position.second/pow(vecR,3);
 }
 
-long double ordinateurDeBord::densite(){// calcul la densité de l'air là où est la fusée
+long double ordinateurDeBord::densite(){// calcule la densité de l'air à l'endroit où se trouve la fusée
 	long double altitude = sqrt(pow(position.first,2)+pow(position.second,2))-3371000.0;
 	long double pres =0;
 	if (-0.0065*altitude+288.15 > 0){
